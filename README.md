@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-       m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109598254', 'ym');
-
-    ym(109598254, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/109598254" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter --> 
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DrayvMoto | Премиум мотосалон</title>
-    <style>  
-    * {
+    
+    <!-- Яндекс Метрика с твоим ID 109598254 -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        
+        ym(109598254, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/109598254" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Яндекс Метрика -->
+    
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -32,7 +41,6 @@
             line-height: 1.6;
         }
 
-        /* Header с изображением */
         header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
@@ -78,7 +86,6 @@
             transform: scale(1.05);
         }
 
-        /* Навигация */
         nav {
             background-color: #1a1a1a;
             position: sticky;
@@ -131,7 +138,6 @@
             color: #fff;
         }
 
-        /* Карточки мотоциклов */
         .bike-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -194,7 +200,6 @@
             background-color: #c1121f;
         }
 
-        /* Услуги сеткой */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -219,7 +224,6 @@
             margin-bottom: 15px;
         }
 
-        /* Акции */
         .offers-banner {
             background: linear-gradient(135deg, #e63946, #ff6b6b);
             padding: 30px;
@@ -233,7 +237,6 @@
             margin-bottom: 15px;
         }
 
-        /* Новости */
         .news-list {
             display: flex;
             flex-direction: column;
@@ -253,7 +256,6 @@
             margin-bottom: 8px;
         }
 
-        /* Форма тест-драйва */
         .testdrive-form {
             background: #2a2a2a;
             padding: 30px;
@@ -296,7 +298,6 @@
             display: none;
         }
 
-        /* Футер */
         footer {
             background: #0a0a0a;
             padding: 50px 20px 30px;
@@ -551,11 +552,16 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    
+                    // Отправляем событие в Яндекс Метрику
+                    if (typeof ym !== 'undefined') {
+                        ym(109598254, 'reachGoal', 'click_nav_' + targetId.replace('#', ''));
+                    }
                 }
             });
         });
 
-        // Автоматическая подстановка модели мотоцикла в форму при клике на кнопки в карточках
+        // Автоматическая подстановка модели мотоцикла в форму
         const testRideBtns = document.querySelectorAll('.test-ride-btn');
         const modelSelect = document.getElementById('model');
         
@@ -573,11 +579,15 @@
                         behavior: 'smooth',
                         block: 'center'
                     });
+                    
+                    if (typeof ym !== 'undefined') {
+                        ym(109598254, 'reachGoal', 'click_test_drive_' + modelName.replace(/\s/g, '_'));
+                    }
                 }
             });
         });
 
-        // Обработка отправки формы тест-драйва
+        // Обработка отправки формы
         const form = document.getElementById('testDriveForm');
         const successDiv = document.getElementById('formSuccess');
         
@@ -597,6 +607,10 @@
                 if (phone.length < 10) {
                     alert('Введите корректный номер телефона');
                     return;
+                }
+                
+                if (typeof ym !== 'undefined') {
+                    ym(109598254, 'reachGoal', 'submit_test_drive');
                 }
                 
                 successDiv.style.display = 'block';
